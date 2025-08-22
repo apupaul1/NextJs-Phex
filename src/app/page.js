@@ -1,9 +1,10 @@
 import Image from "next/image";
+import ProductHighlights from "./components/ProductHighlights";
 
 export default function Home() {
   return (
     <>
-      <h1 className="text-3xl">Hello Guys</h1>
+      <ProductHighlights></ProductHighlights>
     </>
   );
 }
