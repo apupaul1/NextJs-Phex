@@ -1,10 +1,11 @@
-import dbConnect from '@/lib/dbConnect';
+import dbConnect, { collectionNamesObj } from '@/lib/dbConnect';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
 
 export default async function Products() {
 
-    const phoneCollection = dbConnect("phoneCollection")
+    const phoneCollection = dbConnect(collectionNamesObj.phoneCollection)
     const products = await phoneCollection.find({}).toArray();
     return (
         <div className='max-w-7xl mx-auto my-8'>
@@ -27,7 +28,7 @@ export default async function Products() {
                                     <p>${product.price}</p>
                                     <p>{product.description}</p>
                                     <div className="card-actions">
-                                        <button className="btn btn-neutral rounded-lg">View Details</button>
+                                        <Link href={`/products/${product._id}`} className="btn btn-neutral rounded-lg">View Details</Link>
                                     </div>
                                 </div>
                             </div>

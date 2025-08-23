@@ -1,7 +1,8 @@
-// dlvQMOgJIkKQUB3u
-// phex_user
-
 import { MongoClient, ServerApiVersion } from "mongodb";
+
+export const collectionNamesObj = {
+    phoneCollection: "phoneCollection"
+}
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 export default function dbConnect(collectionName) {
@@ -14,5 +15,6 @@ export default function dbConnect(collectionName) {
     },
   });
 
+  
   return client.db(process.env.DB_NAME).collection(collectionName);
 }

@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📱 Phone Gallery - Next.js 15 App
 
-## Getting Started
+## 📝 Project Description
+Phone Gallery is a simple web application built with **Next.js 15 (App Router)** and **NextAuth.js**.  
+It allows users to browse phone products, view detailed information, and (after logging in) access a protected dashboard to add new phones.
 
-First, run the development server:
+## ⚙️ Setup & Installation
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/phone-gallery.git
+   cd phone-gallery
+   npm install
+2. **Configure environment variables**
+Create a .env.local file in the root directory with the following:
+NEXTAUTH_SECRET=your-secret
+NEXTAUTH_URL=http://localhost:3000
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+3. **Run the Deployment Server**
+    npm run dev
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Route Summary**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Route                     | Access           | Description                                     |
+| ------------------------- | ---------------- | ----------------------------------------------- |
+| `/`                       | Public           | Landing Page (Navbar, Hero, Highlights, Footer) |
+| `/login`                  | Public           | Login with NextAuth.js (Google/Credentials)     |
+| `/products`               | Public           | List of all phones                              |
+| `/products/[id]`          | Public           | Phone details page                              |
+| `/dashboard/add-product`  | Protected (Auth) | Add new phone (requires login)                  |
+--------------------------------------------------------------------------------------------------
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

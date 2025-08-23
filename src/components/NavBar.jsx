@@ -14,14 +14,11 @@ export default function NavBar() {
                 <li>
                     <Link href={'/products'}>Products</Link>
                 </li>
-                <li>
-                    <Link href={'/about'}>About</Link>
-                </li>
             </>
         )
     }
     return (
-        <div className="navbar bg-base-100 shadow-sm ">
+        <div className="navbar bg-base-300 sticky top-0 z-32 shadow-sm ">
             <div className="navbar-start ">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
