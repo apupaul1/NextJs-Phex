@@ -8,8 +8,8 @@ export default async function ProductDetails({ params }) {
     const phoneCollection = dbConnect(collectionNamesObj.phoneCollection)
     const data = await phoneCollection.findOne({ _id: new ObjectId(p.id) })
     return (
-        <div className='max-w-7xl mx-auto my-8'>
-            <div className='flex gap-12'>
+        <div className='max-w-7xl mx-auto my-8 p-2'>
+            <div className='flex flex-col md:flex-row gap-12'>
                 <div className='flex-1'>
                     <Image
                         src={data.image}
@@ -51,8 +51,8 @@ export default async function ProductDetails({ params }) {
                     </div>
                     <p>{data.description}</p>
                     <div className='mt-3 flex gap-6 justify-center'>
-                        <button className='btn btn-outline w-1/2 rounded-xl py-6'>Add to Wishlist</button>
-                        <button className='btn btn-neutral w-1/2 rounded-xl py-6'>Add to Cart</button>
+                        <button className='btn btn-outline md:w-1/2 rounded-xl py-6'>Add to Wishlist</button>
+                        <button className='btn btn-neutral md:w-1/2 rounded-xl py-6'>Add to Cart</button>
                     </div>
                 </div>
                 
