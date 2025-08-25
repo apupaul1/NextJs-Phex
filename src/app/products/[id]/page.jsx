@@ -3,7 +3,9 @@ import React from 'react'
 
 export default async function ProductDetails({ params }) {
     const p = await params;
-    const res = await fetch(`http://localhost:3000/api/service/${p.id}`);
+    const res = await fetch(`https://nextjs-phone-mirror.vercel.app/${p.id}`, {
+        cache: "no-store"
+    });
     const data = await res.json()
 
     return (

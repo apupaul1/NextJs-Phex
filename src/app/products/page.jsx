@@ -3,7 +3,9 @@ import Link from 'next/link';
 import React from 'react'
 
 export default async function Products() {
-    const res = await fetch('http://localhost:3000/api/service');
+    const res = await fetch('https://nextjs-phone-mirror.vercel.app', {
+        cache: "no-store"
+    });
     const products = await res.json()
     return (
         <div className='max-w-7xl mx-auto my-8'>

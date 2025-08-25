@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import { useState } from "react";
 import { toast } from 'react-toastify';
@@ -31,7 +33,7 @@ export default function ProductForm() {
         setLoading(true);
         console.log(formData);
 
-        const res = await fetch("/api/service/", {
+        const res = await fetch("https://nextjs-phone-mirror.vercel.app", {
             method: "POST",
             body: JSON.stringify(formData),
         });
