@@ -3,8 +3,11 @@ import React from 'react'
 import { signIn } from "next-auth/react"
 import Link from 'next/link'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 export default function LoginForm() {
+
+    const router = useRouter()
 
     const handleSubmit = async (e) => {
         
@@ -13,11 +16,24 @@ export default function LoginForm() {
         const email = form.email.value
         const password = form.password.value
         try {
-            await signIn("credentials", { email, password, callbackUrl: "/products" });
-            toast.success("Login Successful")
+            const response = await signIn("credentials", { 
+                email, 
+                password, 
+                callbackUrl: "/products",
+                redirect: false,
+             });
+
+             if(response.ok){
+                toast.success("Login Successful")
+                router.push("/products");
+                form.reset();
+             }
+             else {
+                  toast.error("Failed to Login")
+             }
 
         } catch (error) {
-            alert("Authentication failed")
+            toast.error("Authentication failed")
         }
     }
 

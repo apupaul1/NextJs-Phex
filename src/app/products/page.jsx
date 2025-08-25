@@ -1,12 +1,10 @@
-import dbConnect, { collectionNamesObj } from '@/lib/dbConnect';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 
 export default async function Products() {
-
-    const phoneCollection = dbConnect(collectionNamesObj.phoneCollection)
-    const products = await phoneCollection.find({}).toArray();
+    const res = await fetch('http://localhost:3000/api/service');
+    const products = await res.json()
     return (
         <div className='max-w-7xl mx-auto my-8'>
             <h1 className='text-3xl text-center mb-8'>Available Product</h1>

@@ -1,12 +1,11 @@
-import dbConnect, { collectionNamesObj } from '@/lib/dbConnect';
-import { ObjectId } from 'mongodb';
 import Image from 'next/image';
 import React from 'react'
 
 export default async function ProductDetails({ params }) {
     const p = await params;
-    const phoneCollection = dbConnect(collectionNamesObj.phoneCollection)
-    const data = await phoneCollection.findOne({ _id: new ObjectId(p.id) })
+    const res = await fetch(`http://localhost:3000/api/service/${p.id}`);
+    const data = await res.json()
+
     return (
         <div className='max-w-7xl mx-auto my-8 p-2'>
             <div className='flex flex-col md:flex-row gap-12'>
@@ -55,7 +54,7 @@ export default async function ProductDetails({ params }) {
                         <button className='btn btn-neutral md:w-1/2 rounded-xl py-6'>Add to Cart</button>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     )

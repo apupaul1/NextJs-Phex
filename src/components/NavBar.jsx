@@ -1,10 +1,14 @@
+"use client";
+
 import Link from 'next/link'
 import React from 'react'
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { CiHeart } from "react-icons/ci";
+import { signOut, useSession } from 'next-auth/react';
 
 
 export default function NavBar() {
+    const { data: session, status } = useSession()
     const links = () => {
         return (
             <>
@@ -14,6 +18,7 @@ export default function NavBar() {
                 <li>
                     <Link href={'/products'}>Products</Link>
                 </li>
+
             </>
         )
     }
@@ -37,14 +42,30 @@ export default function NavBar() {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {links()}
+                    {status == 'authenticated' ? (<li>
+                        <Link href={'/dashboard/addproduct'}>Add Product</Link>
+                    </li>) : ('')}
                 </ul>
             </div>
             <div className="navbar-end flex gap-5">
-                <button><CiHeart size={25}/></button>
-                <button className=''><MdOutlineShoppingCart size={25} /></button>
-                <button className="btn btn-neutral rounded-lg">
-                    <Link href={'/login'}>Login</Link>
-                </button>
+                {status == 'authenticated' ? (
+                    <div className="navbar-end flex gap-5">
+                        <button><CiHeart size={25} /></button>
+                        <button className=''><MdOutlineShoppingCart size={25} /></button>
+                        <button onClick={() => signOut()} className="btn btn-neutral rounded-lg">
+                            <Link href={'/login'}>Logout</Link>
+                        </button>
+                    </div>
+                ) : (
+                    <div className="navbar-end flex gap-5">
+                        <button className="btn bg-white btn-outline rounded-lg">
+                            <Link href={'/register'}>Register</Link>
+                        </button>
+                        <button className="btn btn-neutral rounded-lg">
+                            <Link href={'/login'}>Login</Link>
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     )
