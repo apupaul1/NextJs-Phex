@@ -1,12 +1,17 @@
+import dbConnect, { collectionNamesObj } from '@/lib/dbConnect';
+import { ObjectId } from 'mongodb';
 import Image from 'next/image';
 import React from 'react'
 
 export default async function ProductDetails({ params }) {
     const p = await params;
-    const res = await fetch(`https://nextjs-phone-mirror.vercel.app/${p.id}`, {
-        cache: "no-store"
-    });
-    const data = await res.json()
+    // const res = await fetch(`https://nextjs-phone-mirror.vercel.app/${p.id}`, {
+    //     cache: "no-store"
+    // });
+    // const data = await res.json()
+
+    const phoneCollection = dbConnect(collectionNamesObj.phoneCollection)
+    const data = await phoneCollection.findOne({ _id: new ObjectId(p.id) });
 
     return (
         <div className='max-w-7xl mx-auto my-8 p-2'>

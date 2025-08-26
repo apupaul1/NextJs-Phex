@@ -53,7 +53,7 @@ export default function NavBar() {
                         <button><CiHeart size={25} /></button>
                         <button className=''><MdOutlineShoppingCart size={25} /></button>
                         <button onClick={() => signOut()} className="btn btn-neutral rounded-lg">
-                            <Link href={'/login'}>Logout</Link>
+                            <Link href={'/'}>Logout</Link>
                         </button>
                     </div>
                 ) : (

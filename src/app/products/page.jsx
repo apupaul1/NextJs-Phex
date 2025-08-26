@@ -1,12 +1,17 @@
+import dbConnect from '@/lib/dbConnect';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 
 export default async function Products() {
-    const res = await fetch('https://nextjs-phone-mirror.vercel.app', {
-        cache: "no-store"
-    });
-    const products = await res.json()
+    // const res = await fetch('https://nextjs-phone-mirror.vercel.app', {
+    //     cache: "no-store"
+    // });
+    // const products = await res.json()
+
+    const phoneCollection = dbConnect("phoneCollection")
+    const products = await phoneCollection.find({}).toArray();
+
     return (
         <div className='max-w-7xl mx-auto my-8'>
             <h1 className='text-3xl text-center mb-8'>Available Product</h1>

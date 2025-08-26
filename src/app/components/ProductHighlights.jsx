@@ -1,13 +1,17 @@
+import dbConnect from '@/lib/dbConnect';
 import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
 
 export default async function ProductHighlights() {
 
-    const res = await fetch('https://nextjs-phone-mirror.vercel.app', {
-        cache: "no-store"
-    });
-    const products = await res.json()
+    // const res = await fetch('https://nextjs-phone-mirror.vercel.app', {
+    //     cache: "no-store"
+    // });
+    // const products = await res.json()
+
+const phoneCollection = dbConnect("phoneCollection")
+const products = await phoneCollection.find({}).toArray();
 
     return (
         <div className='bg-amber-100 p-2'>

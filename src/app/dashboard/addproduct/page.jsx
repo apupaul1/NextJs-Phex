@@ -17,7 +17,7 @@ export default function AddPhoneForm() {
   }, [status, router])
 
   if (status === "loading") {
-    return <p>Loading...</p>
+    return <span className="loading loading-dots loading-lg"></span>
   }
 
   if (status === "unauthenticated") {

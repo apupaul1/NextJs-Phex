@@ -10,7 +10,7 @@ export const GET = async (req) => {
 
 export const POST = async (req) => {
   const body = await req.json();
-  const phoneCollection = await dbConnect(collectionNamesObj.phoneCollection);
+  const phoneCollection = dbConnect(collectionNamesObj.phoneCollection);
   const result = await phoneCollection.insertOne(body);
   return NextResponse.json(result);
 };

@@ -33,8 +33,11 @@ export default function ProductForm() {
         setLoading(true);
         console.log(formData);
 
-        const res = await fetch("https://nextjs-phone-mirror.vercel.app", {
+        const res = await fetch("https://nextjs-phone-mirror.vercel.app/api/service", {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify(formData),
         });
 
