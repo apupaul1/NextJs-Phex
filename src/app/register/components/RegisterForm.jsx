@@ -4,6 +4,7 @@ import { registerUser } from '@/app/actions/auth/registerUser'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React from 'react'
+import { toast } from 'react-toastify'
 
 export default function RegisterForm() {
 
@@ -16,7 +17,10 @@ export default function RegisterForm() {
         const password = form.password.value
         try {
             const response = await registerUser({ email, password });
-            if (response.ok) {
+            console.log(response);
+            if (response.
+                acknowledged
+            ) {
                 toast.success("Register Successful")
                 router.push("/products");
                 form.reset();
@@ -25,8 +29,8 @@ export default function RegisterForm() {
                 toast.error("Failed to Register")
             }
         } catch (error) {
-             toast.error("Authentication failed")
-         }
+            toast.error("Authentication failed")
+        }
 
     }
 
